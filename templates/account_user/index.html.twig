@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AccountUser index{% endblock %}
+
+{% block body %}
+    <h1>AccountUser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account_user in account_users %}
+            <tr>
+                <td>{{ account_user.id }}</td>
+                <td>{{ account_user.nom }}</td>
+                <td>{{ account_user.prenom }}</td>
+                <td>{{ account_user.email }}</td>
+                <td>
+                    <a href="{{ path('account_user_show', {'id': account_user.id}) }}">show</a>
+                    <a href="{{ path('account_user_edit', {'id': account_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('account_user_new') }}">Create new</a>
+{% endblock %}
